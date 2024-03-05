@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MedFID</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">DEEPPC</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="supervised_learning.html">Supervised Learning</a></li>
+                        <li><a href="gans.html" class="active">Generative Adversarial Networks</a></li>
+                        <li><a href="nas.html">Neural Architecture Search</a></li>			
+					</ul>
+				</nav>
+			</header>
+
+			
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">MedFID: An adaption of FID Scores</h1>
+							<section>
+								<span class="icon solid major fa-book"></span>
+								<h3>MedFID Literature Review</h3>
+								<ul class="actions">
+									<li><a href="resources/FID_Lit_Review.pdf" download class="button">Download</a></li>
+								</ul>									
+							</section>
+							<p>We present a medical adaption of FID scores that capture the underlying structure of medical images enabling domain-specific objective synthetic image evaluation.</p>
+							<p>GANs, and other generative models, are often best evaluated by the manual inspection of images by a domain expert. However this process is cumbersome, subjective and fails to capture nuances of the generated data including mode collapse and mode dropping. FID scores have been the standard in objective image evaluation. The basis of FID scores is to measure the distance between two distributions, the real data distribution and the synthetic data distribution, using the Wasserstein-2 distance. The distributions are obtained from a pre-trained inception network whereby the last pooling layer, after removing the terminal layer, is used to generate 4028 vision-relevant features of the image. The mean and variance of these features are used to parameterize a Guassian distribution which is used in the FID computation.</p>
+							<p>However, the Inception Network has been trained on ImageNet which notably contains no medical data. Therefore, the resulting features focus on properties of natural images and real objects. This has questioned its applicability to the domain. With no suitable alternative, we propose a medical adaption of FID scores.</p>
+							<h2>Our Approach</h2>
+							<p>We use the same Inception Network as used in FID Scores including using a model pre-trained on ImageNet (left). We remove the terminal layer and add in 4 fully connected layers with ReLU activation functions, Dropout at a rate of 20% to prevent overfitting and a softmax classification layer. We use an RMSProp optimizer and a categorical cross-enthropy loss function.</p>
+							<div style="display: flex; align-items: center;">
+								<div style="flex: 1; text-align: center">
+									<figure>
+										<img src="images/GANImages/InceptionNetwork.png" alt="Image" style="max-width: 100%;padding: 20px;">
+										<figcaption>Architecture of Inception V3</figcaption>
+									</figure>
+									
+								</div>
+								<div style="flex: 1; text-align: center">
+									<figure>
+										<img src="images/GANImages/MedFIDArchitecture.png" alt="Image" style="max-width: 100%;padding: 20px;">
+										<figcaption>Architecture of MedFID</figcaption>
+									</figure>
+								</div>
+								
+							</div>
+							<br>
+							<p>As a first pass, the new layers were trained for 50 epochs resulting in a classification accuracy of 0.347. To improve on this, the top 2 inception blocks were made trainable and was fine tuned for 20 epochs resulting in a new classification accuracy of 0.518. Given the time constrains of this research, and the depth of the model, this was considered acceptible. Training was done using 3x299x299 images from 2 open-access datasets: MURA-v1.1. which contains X-rays of the upper extremeties and LERA which contains X-rays of the lower extremeties.</p>
+							<h2>Validation</h2>
+						<p>We need to ensure that the metric, firstly, captures the details of x-rays and, secondly, correlates to the visual quality of images. The classification accuracy of 0.518 indicates that we do capture details of X-ray images and do successfully learn most features. However, given more time, the network should be trained to higher accuracy levels.</p>
+						<p>To ensure that there is a correlation with the visual quality of images, we apply various distortions to images and calculate the MedFID score at each disturbance level.</p>
+						<div class="box alt">
+							<div class="row gtr-uniform">
+								<div class="col-4"><span class="image fit"><img src="images/GANImages/MedBlocks.png" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/GANImages/MedBlur.png" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/GANImages/MedS&P.png" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/GANImages/MedNoise.png" alt="" /></span></div>
+								
+							</div>
+						</div>
+						</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

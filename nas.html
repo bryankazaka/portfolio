@@ -1,0 +1,552 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Neural Architecture Search</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">DEEPPC</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="supervised_learning.html">Supervised Learning</a></li>
+                        <li><a href="gans.html" >Generative Adversarial Networks</a></li>
+                        <li><a href="nas.html" class="active">Neural Architecture Search</a></li>			
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<h1 class="major">Investigating the Application of Neural Architecture Search to Pathological Datasets</h1>
+					
+					<h2>Background</h2>
+					<p>The analysis of pathological data is challenging due to the need for expertise, 
+						resource intensiveness, and susceptibility to human errors. Even domain experts, 
+						such as radiologists, can encounter classification inaccuracies. While machine learning, 
+						particularly deep learning, excels in fields with large datasets 
+						such as computer vision, the situation in medicine is different. Medical imaging datasets,
+						 such as orthopedic X-Rays and MRIs, typically contain only hundreds to thousands of 
+						 labeled images. This limited dataset size makes it challenging to effectively employ
+						  Convolutional Neural Networks (CNNs) for medical image classification.</p>
+					<p>This research explores Neural Architecture Search (NAS), a subset of Automatic Machine Learning 
+						(AutoML) aimed at automating the creation of optimal neural network architectures. NAS has shown 
+						to enhance Convolutional Neural Networks (CNNs) in computer vision and hence displays potential for 
+						medical image classification as a combatant to the inherent complexities of medical datasets. The 
+						study utilized two datasets provided by the University of Cape Town: one comprising 933 Cervical 
+						Neck X-Rays and the other containing 2740 Elbow X-rays.</p>
+		
+					<h2>Goals of the Project</h2>
+					<p>The study's primary aim is to assess NAS methods' potential in enhancing Machine Learning performance for medical image classification, with a focus on sparse datasets. The objectives are:</p>
+					<ol>
+						<li>Demonstrate the superiority of CNN architectures discovered via NAS over manually designed architectures.</li>
+						<li>Evaluate NAS-derived architectures' capability to match the performance of radiologists.</li>
+						<li>Provide empirical findings on NAS's utilization in multi-label medical image classification.</li>
+					</ol>
+					<h2>Methods and Experiments</h2>
+							<p>In our research, our experiments employed cutting-edge NAS models, namely DeepMAD, ShapleyNAS, and ZenNAS, to classify pathological images of the neck and elbow.</p>
+							<table border="1">
+								<caption>Table 1: Experiment Design</caption>
+								<thead>
+									<tr>
+										<th>Experiment</th>
+										<th>Model</th>
+										<th>Dataset</th>
+										<th>Objective</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>DeepMAD</td>
+										<td>Cervical Neck</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>DeepMAD</td>
+										<td>Elbow</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>ShapleyNAS</td>
+										<td>Cervical Neck</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>ShapleyNAS</td>
+										<td>Elbow</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>ZenNAS</td>
+										<td>Cervical Neck</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>ZenNAS</td>
+										<td>Elbow</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>ResNet</td>
+										<td>Cervical Neck</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>ResNet</td>
+										<td>Elbow</td>
+										<td>1 & 2 & 3</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>ResNet (Pre-trained)</td>
+										<td>Cervical Neck</td>
+										<td>2</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>ResNet (Pre-trained)</td>
+										<td>Elbow</td>
+										<td>2</td>
+									</tr>
+								</tbody>
+							</table>
+							
+							<p>We employ the following initial hyperparameters during training. Each of which was then tuned using grid search:</p>
+							<table border="1">
+								<caption>Table 2: Hyperparameters values</caption>
+								<thead>
+									<tr>
+										<th>Hyperparameter</th>
+										<th>Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Activation Function</td>
+										<td>Sigmoid</td>
+									</tr>
+									<tr>
+										<td>Loss Function</td>
+										<td>Weighted Binary Cross Entropy</td>
+									</tr>
+									<tr>
+										<td>Learning Rate</td>
+										<td>1 × 10−3</td>
+									</tr>
+									<tr>
+										<td>Optimizer</td>
+										<td>Adam</td>
+									</tr>
+									<tr>
+										<td>Epochs</td>
+										<td>15</td>
+									</tr>
+									<tr>
+										<td>Batch Size</td>
+										<td>64</td>
+									</tr>
+									<tr>
+										<td>Image Size</td>
+										<td>128x128</td>
+									</tr>
+									<tr>
+										<td>Training Callbacks</td>
+										<td>Early Stopping, Normalization</td>
+									</tr>
+								</tbody>
+							</table>	
+		
+					<h2>Results</h2>
+					<!-- Table 1: Model Performance of the Normal label on Test Set of Neck Dataset -->
+						<table border="1">
+							<caption>Model Performance of the <i>Normal label</i> on Test Set of Neck Dataset. Note: (1) denotes weight configuration leading to highest Macro F1-Score, (2) denotes weight configuration leading to highest Overall Mean Accuracy</caption>
+							<thead>
+								<tr>
+									<th>Model Type</th>
+									<th>Mean Accuracy (%)</th>
+									<th>F1-Score (%)</th>
+									<th>True Positive Rate (%)</th>
+									<th>False Positive Rate (%)</th>
+									<th>Weighted TPR & FPR (%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>DeepMAD (1)</td>
+									<td>39.362</td>
+									<td><b>49.558</b></td>
+									<td><b>93.333</b></td>
+									<td>85.938</td>
+									<td>53.698</td>
+								</tr>
+								<tr>
+									<td>DeepMAD (2)</td>
+									<td>50.000</td>
+									<td>44.706</td>
+									<td>63.333</td>
+									<td>56.250</td>
+									<td>53.542</td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (1)</td>
+									<td>63.830</td>
+									<td>46.875</td>
+									<td>50.000</td>
+									<td>29.687</td>
+									<td><b>60.157</b></td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (2)</td>
+									<td>68.085</td>
+									<td>0.000</td>
+									<td>0.000</td>
+									<td><b>0.000</b></td>
+									<td>50.000</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (1)</td>
+									<td>65.957</td>
+									<td>45.714</td>
+									<td>53.333</td>
+									<td>37.500</td>
+									<td>57.917</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (2)</td>
+									<td><b>69.149</b></td>
+									<td>6.451</td>
+									<td>3.333</td>
+									<td><b>0.000</b></td>
+									<td>51.667</td>
+								</tr>
+								<tr>
+									<td>ResNet (1)</td>
+									<td>64.894</td>
+									<td>23.256</td>
+									<td>16.667</td>
+									<td>12.500</td>
+									<td>52.084</td>
+								</tr>
+								<tr>
+									<td>ResNet (2)</td>
+									<td>68.085</td>
+									<td>0.000</td>
+									<td>0.000</td>
+									<td><b>0.000</b></td>
+									<td>50.000</td>
+								</tr>
+								<tr>
+									<td><i>Pretrained ResNet</i></td>
+									<td><i>71.277</i></td>
+									<td><i>58.462</i></td>
+									<td><i>63.333</i></td>
+									<td><i>25.000</i></td>
+									<td><i>69.167</i></td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<br>
+
+						<!-- Table 2: Model Performance of the Normal label on Test Set of Elbow Dataset -->
+						<table border="1">
+							<caption>Model Performance of the <i>Normal label</i> on Test Set of Elbow Dataset. Note: (1) denotes weight configuration leading to highest Macro F1-Score, (2) denotes weight configuration leading to highest Overall Mean Accuracy</caption>
+							<thead>
+								<tr>
+									<th>Model Type</th>
+									<th>Mean Accuracy (%)</th>
+									<th>F1-Score (%)</th>
+									<th>True Positive Rate (%)</th>
+									<th>False Positive Rate (%)</th>
+									<th>Weighted TPR & FPR (%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>DeepMAD (1)</td>
+									<td>85.799</td>
+									<td>7.692</td>
+									<td>5.882</td>
+									<td>5.263</td>
+									<td>50.310</td>
+								</tr>
+								<tr>
+									<td>DeepMAD (2)</td>
+									<td>88.757</td>
+									<td>0.000</td>
+									<td>0.000</td>
+									<td><b>1.316</b></td>
+									<td>49.342</td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (1)</td>
+									<td>34.911</td>
+									<td>21.429</td>
+									<td><b>88.235</b></td>
+									<td>71.053</td>
+									<td>58.591</td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (2)</td>
+									<td>49.704</td>
+									<td>24.779</td>
+									<td>82.352</td>
+									<td>53.947</td>
+									<td>64.203</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (1)</td>
+									<td>82.840</td>
+									<td>25.641</td>
+									<td>29.412</td>
+									<td>11.184</td>
+									<td>59.114</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (2)</td>
+									<td>85.799</td>
+									<td>25.000</td>
+									<td>23.529</td>
+									<td>7.237</td>
+									<td>58.146</td>
+								</tr>
+								<tr>
+									<td>ResNet (1)</td>
+									<td>82.840</td>
+									<td>38.298</td>
+									<td>52.941</td>
+									<td>13.816</td>
+									<td><b>69.563</b></td>
+								</tr>
+								<tr>
+									<td>ResNet (2)</td>
+									<td><b>91.716</b></td>
+									<td><b>41.667</b></td>
+									<td>29.411</td>
+									<td><b>1.316</b></td>
+									<td>64.048</td>
+								</tr>
+								<tr>
+									<td><i>Pretrained ResNet</i></td>
+									<td><i>83.432</i></td>
+									<td><i>48.148</i></td>
+									<td><i>76.471</i></td>
+									<td><i>15.789</i></td>
+									<td><i>80.341</i></td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<br>
+
+						<!-- Table 3: Model Performance on Test Set of Neck Dataset -->
+						<table border="1">
+							<caption>Model Performance on Test Set of Neck Dataset. Note: (1) denotes weight configuration leading to highest Macro F1-Score, (2) denotes weight configuration leading to highest Overall Mean Accuracy.</caption>
+							<thead>
+								<tr>
+									<th>Model Type</th>
+									<th>Mean Accuracy (%)</th>
+									<th>Macro F1-Score (%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>DeepMAD (1)</td>
+									<td>27.660</td>
+									<td>21.788</td>
+								</tr>
+								<tr>
+									<td>DeepMAD (2)</td>
+									<td>37.234</td>
+									<td>20.017</td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (1)</td>
+									<td>0.000</td>
+									<td><b>26.395</b></td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (2)</td>
+									<td>8.511</td>
+									<td>5.768</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (1)</td>
+									<td>12.766</td>
+									<td>25.788</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (2)</td>
+									<td><b>38.298</b></td>
+									<td>9.772</td>
+								</tr>
+								<tr>
+									<td>ResNet (1)</td>
+									<td>26.596</td>
+									<td>19.530</td>
+								</tr>
+								<tr>
+									<td>ResNet (2)</td>
+									<td>37.234</td>
+									<td>7.987</td>
+								</tr>
+								<tr>
+									<td><i>Pretrained ResNet</i></td>
+									<td><i>44.681</i></td>
+									<td><i>28.806</i></td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<br>
+
+						<!-- Table 4: Model Performance on Test Set of Elbow Dataset -->
+						<table border="1">
+							<caption>Model Performance on Test Set of Elbow Dataset. Note: (1) denotes weight configuration leading to highest Macro F1-Score, (2) denotes weight configuration leading to highest Overall Mean Accuracy.</caption>
+							<thead>
+								<tr>
+									<th>Model Type</th>
+									<th>Mean Accuracy (%)</th>
+									<th>Macro F1-Score (%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>DeepMAD (1)</td>
+									<td>16.568</td>
+									<td>9.129</td>
+								</tr>
+								<tr>
+									<td>DeepMAD (2)</td>
+									<td><b>26.036</b></td>
+									<td>5.213</td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (1)</td>
+									<td>0.000</td>
+									<td><b>14.531</b></td>
+								</tr>
+								<tr>
+									<td>ShapleyNAS (2)</td>
+									<td>12.426</td>
+									<td>5.708</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (1)</td>
+									<td>1.775</td>
+									<td>11.155</td>
+								</tr>
+								<tr>
+									<td>ZenNAS (2)</td>
+									<td>18.343</td>
+									<td>9.576</td>
+								</tr>
+								<tr>
+									<td>ResNet (1)</td>
+									<td>18.343</td>
+									<td>9.122</td>
+								</tr>
+								<tr>
+									<td>ResNet (2)</td>
+									<td>24.260</td>
+									<td>7.633</td>
+								</tr>
+								<tr>
+									<td><i>Pretrained ResNet</i></td>
+									<td><i>31.361</i></td>
+									<td><i>16.297</i></td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<br>
+
+					<h2>Key Findings</h2>
+					<ol>
+						<li>NAS methods, especially ZenNAS, have shown potential in enhancing model performance. In one of the 
+							multi-label medical image classification tasks, ZenNAS surpassed traditional manually designed 
+							architectures.</li>
+						<li>The research highlighted the complexities of achieving radiologist-level performance with AI models.
+							 While NAS models showed progress, the pre-trained baseline model achieved the best performance in
+							  distinguishing normal and abnormal x-rays. This model's performance was comparable to radiologists
+							   in detecting breast cancer, with a Weighted True Positive Rate (TPR) & False Positive Rate (FPR) 
+							   score of 80.341%, compared to a median score of 87.45% for radiologists.</li>
+						<li>Experimental results revealed that NAS methods generally outperformed the baseline in both 
+							Mean Accuracy and Macro-F1 Score. Specifically, ZenNAS achieved the highest Mean Accuracy 
+							of 38.298%, while ShapleyNAS recorded the top Macro F1-Score of 26.395%. However, ShapleyNAS
+							 was the only NAS method that performed worse than the baseline in Mean Accuracy.</li>
+						<li> The research emphasized the importance of dataset-specific model selection and optimization. 
+							The performance variability of NAS methods across different datasets underscores the need for 
+							tailored model selection strategies. </li>
+					</ol>
+
+					<h2>Final Word</h2>
+					<p> The research underscores the transformative potential of Neural Architecture Search (NAS) in 
+						the realm of medical image classification. By juxtaposing AI systems with human radiologists, 
+						the study illuminates a path towards improved diagnostic accuracy and patient care. The 
+						empirical evidence presented emphasizes the versatility of NAS, especially in multi-label 
+						medical image classification scenarios. However, the variability in NAS performance across
+						 datasets also serves as a reminder of the importance of tailored model strategies and the 
+						 continuous need for integrating deeper clinical insights into AI models for more holistic and 
+						 accurate diagnostics.</p>
+					
+					<h2>Future Work</h2>
+					<p>Through ongoing research and collaboration, the gap between AI systems and human radiologists can be bridged, enhancing patient outcomes and healthcare delivery. This research has addressed critical gaps in the field of medical image classification with Neural Architecture Search (NAS), demonstrating both successes and challenges in achieving research objectives for sparse pathological datasets.</p>
+					<p>Looking ahead, future research should explore several avenues:</p>
+					<ul>
+						<li><strong>Specialized Applications:</strong> Investigate NAS’ suitability in specialized medical domains or rare diseases, where sparse data and unique challenges are prevalent. Tailoring NAS approaches to specific clinical needs can be beneficial.</li>
+						<li><strong>Ethical Considerations:</strong> Address ethical considerations by focusing on model interpretability, fairness, and bias mitigation. Ensuring AI models are transparent and equitable is vital for their real-world applicability.</li>
+						<li><strong>Practical Applications:</strong> Explore practical applications of insights within healthcare institutions, especially those facing resource constraints. Strategies for integrating AI models into clinical workflows can enhance efficiency and accuracy.</li>
+						<li><strong>Advanced NAS Techniques:</strong> Investigate advanced NAS techniques and architectural modifications to further optimize model performance. Continuously evolving NAS methodologies can stay at the forefront of AI advancements.</li>
+						<li><strong>Collaborative Partnerships:</strong> Foster collaborations between AI researchers and medical experts or radiologists. Such partnerships can lead to more effective and clinically relevant AI solutions.</li>
+					</ul>
+						 
+					</div>
+			</section>
+		
+		</div>
+		
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; University of Cape Town. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

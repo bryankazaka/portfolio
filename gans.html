@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generative Adversarial Networks</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">DEEPPC</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="supervised_learning.html">Supervised Learning</a></li>
+                        <li><a href="gans.html" class="active">Generative Adversarial Networks</a></li>
+                        <li><a href="nas.html">Neural Architecture Search</a></li>			
+					</ul>
+				</nav>
+			</header>
+
+			
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Generative Adversarial Networks</h1>
+							<h1>Introduction</h2>
+							<p>It is well-known that the uptake of machine learning in Pathology is limited by patient privacy and confidentiality restrictions that limit the sharing and processing of data. Current Pathology datasets notoriously small, with only hundreds to thousands of images and are often imbalanced and of poor quality leading to poor accuracy measures on real-world data. Consequentially, using these models poses a risk to patients. Attempts at creating large, open-access datasets have
+								proved to be a tedious and laborious  task, with annotations being manual and time-consuming. Research has explored Data Augmentation as a suitable alternative however this only makes the model invariant to certain conditions (while increasing the size of the dataset) but does not increase the diversity of the dataset. Image generation has recently gathered a lot of attention for its ability to generate synthetic images that closely resemble actual, real images. However, image generation in Pathology has received little coverage, particularly when looking at larger pathologies such as the Elbow.</p>
+								<b>A Shift Towards Image Generation</b>
+							<p>Therefore, this study explores the use of Generative Adversarial Networks (GANs) to artificially inflate pathological datasets through the generation of synthetic images that closely follow the distribution of original images. As the domain is constrained by small datasets, we aim to explore the optimal GAN variants and configuration for this task in a data-constrained environment.</p>
+							<b>The project goals are to:</b>
+							<ul>
+								<li>Prove the affectiveness of Generative Adversarial Networks on synthesising pathological datasets using small training sets</li>
+								<li>To identify the most optimal GAN variant for this task</li>
+								<li>To identify any domain-specific limitations preventing the adoption of current GAN variants in the field</li>
+							</ul>
+							<hr class="gradient-bar">
+							<h1>GAN Models and Metrics</h1>
+
+							<div style="display: flex; align-items: center;">
+								<div style="flex: 1;">
+									<figure>
+										<img src="images/GANImages/GAN3.png" alt="Image" style="max-width: 100%;">
+										<figcaption class = "captions">Architecture of Vanilla GAN</figcaption>
+									</figure>
+									
+								</div>
+								<div style="flex: 2; padding: 20px;">
+									<h2>Vanilla GAN</h2>
+									<p>This is the original GAN proposed in 2014 by Ian Goodfellow. The aim was simple: generate synthetic images that closely follow the distribution of original data</b>. The model consists of two Multi-Layer Perceptrons trained in an adversarial game to optimize a common loss function. The first network is the Generator, responsible for approximating the data distribution to generate images which the second network, the Discriminator, will classify as real or fake. The aim of the Generator is to produce imagery so realistic that the Discriminator has difficulty discriminating between real and fake images.</p>
+									
+									<h2>WGAN-GP</h2>
+									<p>WGAN-GP follows the same architecture  as Vanilla GAN but improves the loss function by using the Wasserstein Distance to measure the distance between the actual data distribution. Additionally, the sigmoid activation layers in the Discriminator's output layer is replaced with a linear activation function.
+										We use the Gradient Penalty approach which acts as a form of regularization on the gradients of the loss function to ensure stable behaviour.
+									</p>
+								</div>
+							</div>
+							<hr class="hrgradient">
+							<div style="display: flex; align-items: center;">
+								<div style="flex: 1;">
+									<figure>
+										<img src="images/GANImages/StyleGAN architecture.png" alt="Image" style="max-width: 100%;">
+										<figcaption class = "captions">Architecture of StyleGAN (left) and StyleGAN2 (right)</figcaption>
+									</figure>
+								</div>
+								<div style="flex: 2; padding: 20px;">
+									<h2>StyleGAN2</h2>
+									<p>StyleGAN leverages a Style-based approach removing the generative process from its black box. Conditional GANs typically guide the Generator into producing images in the target domain but do not control the actual generation process. StyleGAN, however, transforms a random noise input into <i>styles</i> that allow each convolutional layer to learn a different style allowing for explicit control over the generation process and allows for stochastic variation in generated images. 
+									We implement StyleGAN2, an improved and more regularized version of StyleGAN.</p>
+								</div>
+							</div>
+							<hr>
+							<blockquote>Generative models are best evaluated through manual evaluation however this is a slow, cumbersome and subjective process. Quantitative evaluation is widely recognised to be challenging but research has adopted the <i>Fretchet Inception Distance </i> - <b>FID</b> scores - as the standard. However, the network on which MedFID scores are based was not trained on any medical data which has questioned the applicability to the field. As such we propose a medical-focused adaption of FID scores using the same underlying network as FID Scores. The inclusion of domain knowledge in the metric allows for a more appropriate comparison between models.
+								 <br><br><a href="MedFID.html" class="button">Learn more about our MedFID metric</a></blockquote>
+							<hr class="gradient-bar">
+							<h1>Results</h1>
+							
+							<h2>Vanilla GAN</h2>
+							<p>The images below show generated imagery at 10800 iterations for Vanilla1 through to Vanilla5</p>
+							<div style="flex: 1; display: flex; justify-content: space-between; margin: 20=px;">
+									<img src="images/GANImages/VanillaGANGenerations/E1.png" alt="Image 1" style="width: 15%; height: auto;">
+									<img src="images/GANImages/VanillaGANGenerations/E2.png" alt="Image 2" style="width: 15%; height: auto;">
+									<img src="images/GANImages/VanillaGANGenerations/E3.png" alt="Image 3" style="width: 15%; height: auto;">
+									<img src="images/GANImages/VanillaGANGenerations/E4.png" alt="Image 3" style="width: 15%; height: auto;">
+									<img src="images/GANImages/VanillaGANGenerations/E5.png" alt="Image 3" style="width: 15%; height: auto;">
+							</div>
+							
+							<br>
+							<p>The following model configurations were run:</p>
+							<div style="display: flex; flex-wrap: wrap;">						
+								<!-- Two Columns -->
+								<div style="flex: 1; display: flex; margin: 10px;">
+									<!-- Left Column with Table and Text -->
+									<div class="table-wrapper" style="flex: 2; padding: 20px;">
+										<table>
+											<thead>
+												<tr>
+													<th>Experiment</th>
+													<th>Lr</th>
+													<th>B1</th>
+													<th>B2</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Vanilla1</td>
+													<td>0.002</td>
+													<td>0.5</td>
+													<td>0.999</td>
+												</tr>
+												<tr>
+													<td >Vanilla2</td>
+													<td>0.0002</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+												<tr>
+													<td>Vanilla3</td>
+													<td>0.001</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+												<tr>
+													<td>Vanilla4</td>
+													<td>0.001</td>
+													<td>0.5</td>
+													<td>0.999</td>
+												</tr>
+												<tr>
+													<td>Vanilla5</td>
+													<td>0.0001</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+											</tbody>
+										</table>
+										<figcaption class="captions">Table of VanillaGAN experiments</figcaption>
+									</div>
+									
+									
+								</div>
+								<div style="flex: 1;">
+									<figure>
+										<img src="images/GANImages/VanillaFull.png" alt="Image 4" style="max-width: 180%; height: auto; padding: 10px;">
+										<figcaption class = "captions">MedFID scores for the Vanilla GAN experiments.</figcaption>
+									</figure>
+								</div>
+							</div><br>
+							<div style="display: flex; align-items: center;">
+								<div style="flex: 1; text-align: center">
+									<figure>
+										<img src="images/GANImages/VanillaProgress.png" alt="Image" style="max-width: 80%;padding: 20px;">
+										<figcaption class = "captions">Training progress made by the different Vanilla GAN experiments</figcaption>
+									</figure>
+									
+								</div>
+								<div style="flex: 2; padding: 20px;">
+									<h3>Analysis of Results</h3>
+									<p>Our experiments showed that Vanilla GAN is extremely sensitive to the choice of hyperparameters with different model behaviours and high variance on the images produced by each model. For all experiments, training oscillates beyond 1000 iterations and fails to converge to a lower MedFID score beyond this point. A general trend is that a lower learning rate improves the model's ability to produce higher-quality imagery but does little to help the model converge. The sensitivity to the choice of beta parameters for the Adam optimizer is demonstrated in Vanilla3 and Vanilla4.
+									</p><p>
+										It is clear that Vanilla GAN fails to produce recognizable imagery for all hyperparameter combinations and is not usable in downstream tasks.
+									</p>
+								</div>
+
+							</div>
+							<hr>
+							<h2>WGAN-GP</h2>
+							<p>The images below show generated imagery at 10800 iterations for WGAN1 through to WGAN5</p>
+							<div style="flex: 1; display: flex; justify-content: space-between; margin: 20px;">
+									<img src="images/GANImages/WGANGenerations/E1.png" alt="Image 1" style="max-width: 20%; height: auto;">
+									<img src="images/GANImages/WGANGenerations/E2.png" alt="Image 2" style="max-width: 20%; height: auto;">
+									<img src="images/GANImages/WGANGenerations/E3.png" alt="Image 3" style="max-width: 20%; height: auto;">
+									<img src="images/GANImages/WGANGenerations/E4.png" alt="Image 3" style="max-width: 20%; height: auto;">
+									<img src="images/GANImages/WGANGenerations/E5.png" alt="Image 3" style="max-width: 20%; height: auto;">
+							</div>
+							<br>
+							<p>The following model configurations were run:</p>
+							<div style="display: flex; flex-wrap: wrap;">						
+								<!-- Two Columns -->
+								<div style="flex: 1; display: flex; margin: 10px;">
+									<!-- Left Column with Table and Text -->
+									<div class="table-wrapper" style="flex: 2; padding: 20px;">
+										<table>
+											<thead>
+												<tr>
+													<th>Experiment</th>
+													<th>Lr</th>
+													<th>B1</th>
+													<th>B2</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>WGANGP1</td>
+													<td>0.0001</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+												<tr>
+													<td >WGANGP2</td>
+													<td>0.00005</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+												<tr>
+													<td>WGANGP3</td>
+													<td>0.001</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+												<tr>
+													<td>WGANGP4</td>
+													<td>0.0002</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+												<tr>
+													<td>WGANGP5</td>
+													<td>0.002</td>
+													<td>0.5</td>
+													<td>0.9</td>
+												</tr>
+											</tbody>
+										</table>
+										<figcaption class="captions">Table of WGAN-GP experiments</figcaption>
+									</div>
+									
+									
+								</div>
+								<div style="flex: 1;">
+									<figure>
+										<img src="images/GANImages/WGANFullPlot.png" alt="Image 4" style="max-width: 180%; height: auto; padding: 10px;">
+										<figcaption class = "captions">MedFID scores for the WGAN-GP experiments.</figcaption>
+									</figure>
+								</div>
+							</div><br>
+							<div style="display: flex; align-items: center;">
+								<div style="flex: 1; text-align: center">
+									<figure>
+										<img src="images/GANImages/WGANProgress.png" alt="Image" style="max-width: 80%;padding: 20px;">
+										<figcaption class = "captions">Training progress made by the different Vanilla GAN experiments</figcaption>
+									</figure>								
+								</div>
+								<div style="flex: 2; padding: 20px;">
+									<h3>Analysis of Results</h3>
+									<p>The improved loss function over Vanilla GAN leads to significantly better image quality with distinct elements in the elbow now visible. However, the training process still oscillates after 1000 iterations with little learning taking place beyond this point. 
+										Looking at hyperparameters, we observe that larger learning rates produce similar results to lower learning rates but with more variant results. We observe an optimal learning rate of 0.002 and 0.0002.
+									</p>
+								</div>
+
+							</div>
+							<hr>
+							<h2>StyleGAN2</h2>
+							<p>StyleGAN is insensitive to the choice of hyperparameters due to its generation mechanism. As such, we kept the baseline configuration of B1 = 0, B2=0.9 and Lr = 0.0025.</p>
+							<div style="flex: 1; text-align: center">
+								<figure>
+									<img src="images/GANImages/StyleProgress.png" alt="Image" style="max-width: 100%;padding: 20px;">
+									<figcaption class = "captions">Training progress made by StyleGAN (a random seed value was used in each generation)</figcaption>
+								</figure>
+								
+							</div>
+							<br>
+							<h3>High quality image generation</h3>
+							<p>In terms of visual quality, StyleGAN2 clearly outshines VanillaGAN and WGAN-GP. The generated images exhibit significantly improved clarity in features such as bone structures and joints. Even finer details, such as the "L" and "R" markings are visible. clearly indicating better quality imagery (<b>MedFID = 26</b>). However, we noticed similar MedFID scores and no statistical differences between StyleGAN2 and the best performing WGAN-GP models. A visual inspection reveals a possible explanation:
+							</p>
+							<div style="flex: 1; text-align: center">
+								<figure>
+								<img src="images/GANImages/StyleInconsistencies.png" alt="Image" style="max-width: 100%;padding: 20px;">
+								<figcaption class = "captions">A selection of generated imagery showing some of the features generated due to dataset inconsistencies.</figcaption>
+							</figure>
+							<br>	
+							</div>
+							<p>StyleGAN2's insertion of <i>styles</i> at each convolutional layer allows the model to meticulously capture every detail of the training set. Generally, this is extremely desirable in a generative model. However, this also means that elements present in a subset of images are being replicated and merged into all generated images. With an inconsistent training dataset, as is characteristic of medical datasets, StyleGAN2 picks up on the inconsistencies and applies them to generated images as shown in the graphic above resulting in poor MedFID scores even though some imagery is of realistic quality. StyleGAN2 does introduce stochastic variations to images however the unwanted distortions are becoming prevalent in a majority of generated images. Hence, we predict that the poor MedFID scores is attributed to the poor quality training dataset. Given an improved dataset we expect StyleGAN2 to have smaller MedFID scores than WGAN-GP.
+							<br><br>It is worth noting that the complexity of StyleGAN2, particularly increased regularization and additional layers in the mapping and image synthesis process, results in slower training compared to the other models presenting a tradeoff between computational complexity and image quality. Fortunately, we have observed that StyleGAN2 becomes unstable and diverges after ~6000 iterations on our small dataset thus suggesting that StyleGAN training be cut short to prevent distorted images.</p>
+							<hr class="gradient-bar">
+							<h1>Conclusion</h1>
+			<p>Our experiments demonstrate the hyperparameter sensitivity of GANs and that extensive hyperparameter tuning would be required to produce high-quality images however our VanillaGAN and WGAN-GP experiments failed to produce results suitable for further usage. Vanilla GAN consistently fails to produce good imagery while WGAN-GP captures some details but is still far from a standard that would be acceptable for usage in the field. StyleGAN2, however, seems to perform well on our small datasets but is limited by inconsistencies in the dataset. Therefore, while StyleGAN provides a good base for future research, auxiliary work on producing high-quality training datasets need to be conducted. </p>
+			<h3>Main Contributions</h3>
+			<ul class="alt">
+				<li>We have shown that high-quality image generation is possible on small datasets through a Style-based GAN architecture.</li>
+				<li>We have shown that StyleGAN2 training should be cut short when trained on small datasets due to model instability introduced at higher iterations.</li>
+				<li>We have shown that StyleGAN2 is a good basis for future research but data collection measures need to improve to ensure data consistency (future and ongoing work at Groote Schuur Hospital includes the derivation of larger standardized datasets but this is a slow and laborious task).</li>
+				<li>We have presented an X-ray-orientated metric for objective synthetic X-ray image evaluation.</li>
+			</ul>
+			<h3>Future Work</h3>
+			<ul>
+				<li>Repeat the experiment with consistent datasets to test the hypothesis of StyleGAN2 being limited by dataset inconsistency</li>
+				<li>Perform class-conditioned image generation using GANs once data consistency measures improve</li>
+				<li>Conduct further tests on MedFID to ensure its applicability to the field</li>
+				<li>Generate higher-resolution imagery through more advanced GPUs or investigate course-to-fine-grained GANs</li>
+				<li>Investigate advanced regularization methods that increase the probability of model convergence</li>
+			</ul>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; University of Cape Town. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
