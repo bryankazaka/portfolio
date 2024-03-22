@@ -217,7 +217,7 @@
 
 			<br></br>
 
-			<!-- Projects -->
+			<!-- Projects 
 			<h2 style="font-family: 'Georgia', serif;">Projects</h2>
 			<section id="three">
 
@@ -225,10 +225,10 @@
 
 					<div class="carousel">
 						<div class="carousel-images">
-							<section>
-								<img src="images/IEEEWCCI.png" style="object-fit: contain " width="20%"
+							<section class="aspect-ratio-16-9">
+								<img src="images/shitora/1.png" style="object-fit: contain " width="20%"
 									data-position="center">
-								<img src="images/neck_xray.jpeg" style="object-fit: contain " width="20%"
+								<img src="images/shitora/2.png" style="object-fit: contain " width="20%"
 									data-position="center">
 							</section>
 						</div>
@@ -237,31 +237,34 @@
 					</div>
 
 					<div class="content">
-						<div class="inner">
-							<h2>IEEE WCCI 2024 Conference Publication</h2>
-							<h3><em>Co-authored academic research paper on Deep Learning in Radiology</em></h3>
+						<div class="inner" style="word-wrap: break-word; max-width: 100%;">
+							<h2>DEEPPC: Supervised Learning</h2>
+							<h3><em>Academic research thesis on Deep Learning in Radiology</em></h3>
 							<p>
 							<ul>
-								<li>Extended my successful undergraduate research thesis with a research group for
-									conference publication.</li>
-								<li>Conducted comprehensive experiments across 240 model variations, employing different
-									architectures, Data Augmentation methods, and Transfer Learning strategies on two
-									distinct medical image datasets.</li>
-								<li>Demonstrated that ConvNeXts are highly proficient image classifiers for small
-									datasets,
-									outperforming other tested models in terms of accuracy.</li>
-								<li>Established the effectiveness of pre-training and fine-tuning methodologies in
-									optimizing deep learning models, with notable improvements in model accuracy.</li>
-								<li>Aided experiments to draw the conclusion of the efficacy of Neural Architecture
-									Search
-									in Deep Learning for small datasets.</li>
-								<li>Tech stack includes: python3, pytorch, CUDA, GPU clusters.</li>
-
-
+								<li>Conducted experiments across 240 model variations, demonstrating 
+									deep learning optimization strategies.</li>
+								<li>Validated ConvNeXt as superior for multi-label image classification in medical
+									datasets, achieving optimal results with 224x224 resolution.</li>
+								<li>Improved model accuracy with Data Augmentation, emphasizing pixel integrity
+									preservation through Neural Aug, despite no statistical significance.</li>
+								<li>Enhanced model performance and mitigated overfitting in small, unbalanced datasets
+									via Transfer Learning, demonstrating substantial statistical significance.</li>
+								<li>Addressed class imbalance issues, identifying them as more detrimental than dataset
+									size to model performance in medical imaging.</li>
+								<li>Developed Default Validation algorithm, boosting Exact Match accuracy by 1.6%-6.9%,
+									by eliminating logical label prediction errors.</li>
+								<li>Tech stack: Python3, PyTorch, CUDA, GPU clusters.</li>
 							</ul>
+
+
 							<ul class="actions">
-								<li><a href="" target="_blank" rel="noopener"
-										class="button icon brands fa-leanpub">Conference Paper</a></li>
+								<li><a href="https://projects.cs.uct.ac.za/honsproj/cgi-bin/view/2023/chetty_kazaka_slaven.zip/resources/KZKWIN001_DEEPPC_SupervisedLearning.pdf"
+										target="_blank" rel="noopener" class="button icon brands fa-leanpub">Thesis</a>
+								</li>
+								<li><a href="https://projects.cs.uct.ac.za/honsproj/cgi-bin/view/2023/chetty_kazaka_slaven.zip/"
+										target="_blank" rel="noopenner" class="button icon brands fa-github">Project
+										Website</a></li>
 								<li><a href="https://github.com/bryankazaka/DEEPPC-Supervised-Learning" target="_blank"
 										rel="noopenner" class="button icon brands fa-github">GitHub Repository</a></li>
 							</ul>
@@ -269,19 +272,20 @@
 						</div>
 					</div>
 				</div>
-			</section>
-			<br></br>
+			</section> --->
+			<h2 style="font-family: 'Georgia', serif;">Chosen Projects</h2>
 			<section>
 
-				<div id="project2" class="project">
+				<div id="project1" class="project">
 
 					<div class="carousel">
 						<div class="carousel-images">
-							<section>
-								<img src="images/shitora/Screenshot 2024-03-07 at 21.56.55.png"
-									style="object-fit: contain " width="20%" data-position="center">
-								<img src="images/shitora/Screenshot 2024-03-07 at 21.51.41.png"
-									style="object-fit: contain " width="20%" data-position="center">
+							<section class="aspect-ratio-16-9">
+								<img src="images/DEEPPC.png" style="object-fit: contain " width="20%"
+									data-position="center">
+								<img src="images/neck_xray.jpeg" style="object-fit: contain " width="20%"
+									data-position="center">
+
 							</section>
 						</div>
 						<button class="prev" onclick="changeSlide(-1)">&#10094;</button>
@@ -290,21 +294,213 @@
 
 					<div class="content">
 						<div class="inner">
-							<h2>Shitora Japanase Word Game</h2>
+							<h2>Exploring Supervised Learning for Small Data Pathology Datasets</h2>
+							<h3><em>Academic research thesis on Deep Learning in Radiology</em></h3>
+							<p>
+							<ul>
+								<li>Conducted experiments across 240 model variations, demonstrating
+									deep learning optimization strategies.</li>
+								<li>Validated ConvNeXt as superior for multi-label image classification in medical
+									datasets, achieving optimal results with 224x224 resolution.</li>
+								<li>Improved model accuracy with Data Augmentation, emphasizing pixel integrity
+									preservation through Neural Aug, despite no statistical significance.</li>
+								<li>Enhanced model performance and mitigated overfitting in small, unbalanced datasets
+									via Transfer Learning, demonstrating substantial statistical significance.</li>
+								<li>Addressed class imbalance issues, identifying them as more detrimental than dataset
+									size to model performance in medical imaging.</li>
+								<li>Developed Default Validation algorithm, boosting Exact Match accuracy by 1.6%-6.9%,
+									by eliminating logical label prediction errors.</li>
+								<li>Tech stack: Python3, PyTorch, CUDA, GPU clusters.</li>
+							</ul>
+							<ul class="actions">
+								<li><a href="https://shiritora.pythonanywhere.com/" target="_blank" rel="noopener"
+										class="button fa fa-wifi">Site</a>
+
+							</ul>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+			<section>
+
+				<div id="project2" class="project">
+
+					<div class="carousel">
+						<div class="carousel-images">
+							<section class="aspect-ratio-16-9">
+								<img src="images/shitora/1.png" style="object-fit: contain " width="20%"
+									data-position="center">
+								<img src="images/shitora/2.png" style="object-fit: contain " width="20%"
+									data-position="center">
+								<img src="images/shitora/3.png" style="object-fit: contain " width="20%"
+									data-position="center">
+								<img src="images/shitora/4.png" style="object-fit: contain " width="20%"
+									data-position="center">
+								<img src="images/shitora/5.png" style="object-fit: contain " width="20%"
+									data-position="center">
+								<img src="images/shitora/6.png" style="object-fit: contain " width="20%"
+									data-position="center">
+								<img src="images/shitora/7.png" style="object-fit: contain " width="20%"
+									data-position="center">
+
+							</section>
+						</div>
+						<button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+						<button class="next" onclick="changeSlide(1)">&#10095;</button>
+					</div>
+
+					<div class="content">
+						<div class="inner">
+							<h2>Shitora Japanese Word Game</h2>
 							<h3><em>Japanese language tool to aid students in NNNJapanese Langauge Club
 									learn and memorize new words.</em></h3>
 							<p>
 							<ul>
-								<li>Developed GPT-wrapped memory word game for an established user base of over 50.</li>
+								<li>Developed web-based memory word game for an established user base of over 50.</li>
 								<li>Collaborated with an experienced graphic designer for seamless UI/UX.</li>
 								<li>Hosting the service online for regular users.</li>
-								<li>Tech stack includes: python3, Flask, Jinja, Open-AI API, HTML, CSS.</li>
-
-
+								<li>Tech stack includes: Python3, Flask, SQL, Jinja, APIs, HTML, CSS, XML.</li>
 							</ul>
 							<ul class="actions">
-								<li><a href="" target="_blank" rel="noopener" class="button fa fa-wifi">Site</a>
+								<li><a href="https://shiritora.pythonanywhere.com/" target="_blank" rel="noopener"
+										class="button fa fa-wifi">Site</a>
 
+							</ul>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+			<section>
+
+				<div id="project3" class="project">
+
+					<div class="carousel">
+						<div class="carousel-images">
+							<section class="aspect-ratio-16-9">
+								<video src="videos/media1.mp4" style="object-fit: contain;" width="20%"
+									data-position="center" controls></video>
+								<video src="videos/media4.mp4" style="object-fit: contain;" width="20%"
+									data-position="center" controls></video>
+								<video src="videos/media5.mp4" style="object-fit: contain;" width="20%"
+									data-position="center" controls></video>
+							</section>
+						</div>
+
+						<button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+						<button class="next" onclick="changeSlide(1)">&#10095;</button>
+					</div>
+
+					<div class="content">
+						<div class="inner">
+							<h2>WandWielder VR</h2>
+							<h3><em>Co-developed Harry Potter themed Virutal Reality Environment.</em></h3>
+							<p>
+							<ul>
+								<li>Implements voice recognition triggered spell-casting.</li>
+								<li>Features multi-modal I/O, including haptics, visual cues, omni-directional sound.
+								</li>
+								<li>Tech stack includes: Unity3D, C#, OpenXR, StreamVR, HuggingFace API.</li>
+							</ul>
+							<ul class="actions">
+								<li><a href="https://github.com/bryankazaka/WandWielder" target="_blank" rel="noopener"
+										class="button icon brands fa-github">GitHub Repository</a></li>
+							</ul>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+			<section>
+
+				<div id="project4" class="project">
+
+					<div class="carousel">
+						<div class="carousel-images">
+							<section class="aspect-ratio-16-9">
+								<img src="images/splattersport/Screenshot 2024-03-21 at 15.47.29.png"
+									style="object-fit: contain " width="20%" data-position="center">
+								<video src="videos/Movie_003.webm" style="object-fit: contain;" width="20%"
+									data-position="center" controls></video>
+							</section>
+						</div>
+
+						<button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+						<button class="next" onclick="changeSlide(1)">&#10095;</button>
+					</div>
+
+					<div class="content">
+						<div class="inner">
+							<h2>Splatter Sport</h2>
+							<h3><em>Co-developed Pixel-art 2D top-down hack and slash PVP.</em></h3>
+							<p>
+							<ul>
+								<li>Enables omnidirectional player movement and attack, increasing gameplay depth.</li>
+								<li>Leverages enemy defeat for strategic paint splatter control.</li>
+								<li>Features advanced mob AI with diverse behaviors and effects.</li>
+								<li>Offers weapon, stat, and skill upgrades for customized strategies.</li>
+								<li>Incorporates game-altering wildcards for dynamic combat scenarios.</li>
+								<li>Delivers engaging combat in a custom pixel-art 2D Coliseum with custom sprites.</li>
+								<li>Tech stack: Unity3D, C#</li>
+							</ul>
+
+							<ul class="actions">
+								<li><a href="https://github.com/bryankazaka/SplatterSport" target="_blank"
+										rel="noopener" class="button icon brands fa-github">GitHub Repository</a></li>
+							</ul>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+			<section>
+
+				<div id="project5" class="project">
+
+					<div class="carousel">
+						<div class="carousel-images">
+							<section class="aspect-ratio-16-9">
+								<img src="images/ptjp/Screenshot 2024-03-21 at 22.19.12.png"
+									style="object-fit: contain " width="20%" data-position="center">
+								<img src="images/ptjp/Screenshot 2024-03-21 at 22.18.27.png"
+									style="object-fit: contain " width="20%" data-position="center">
+								<img src="images/ptjp/Screenshot 2024-03-21 at 22.19.38.png"
+									style="object-fit: contain " width="20%" data-position="center">
+							</section>
+						</div>
+
+						<button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+						<button class="next" onclick="changeSlide(1)">&#10095;</button>
+					</div>
+
+					<div class="content">
+						<div class="inner">
+							<h2>Public Transport Journey Planner</h2>
+							<h3><em>Co-developed journey planner for the Cape Town metrorail system.</em></h3>
+							<p>
+							<ul>
+								<li>Implements Djikstra's algorithm for efficient route planning.</li>
+								<li>Enables users to accurately plan routes between major suburbs throughout the
+									metropolitan.</li>
+								<li>Provides consistant visual aide of the route.</li>
+								<li>Adapts official schedules.</li>
+								<li>Allows real-time changes to closed stations and routes for admins.</li>
+								<li>Stores and retrieves recent searches.</li>
+								<li>Tech stack: Python3, Matplotlib, Flask, mySQL, JavaScript, HTML, CSS,.</li>
+							</ul>
+
+							<ul class="actions">
+								<li><a href="https://github.com/bryankazaka/PTJP-Web-App" target="_blank"
+										rel="noopener" class="button icon brands fa-github">GitHub Repository</a></li>
 							</ul>
 							</p>
 						</div>
@@ -333,10 +529,12 @@
 											class="icon brands fa-linkedin"><span> LinkedIn</span></a>
 									</div>
 									<div class="field half">
-										<a href="https://github.com/bryankazaka" class="icon brands fa-github"><span> Github</span></a>
+										<a href="https://github.com/bryankazaka" class="icon brands fa-github"><span>
+												Github</span></a>
 									</div>
 									<div class="field half">
-										<a href="https://leetcode.com/BryanKazaka/" class="icon brands fa-gg"><span> LeetCode</span></a>
+										<a href="https://leetcode.com/BryanKazaka/" class="icon brands fa-gg"><span>
+												LeetCode</span></a>
 									</div>
 								</div>
 
@@ -368,7 +566,7 @@
 	<script>
 		document.querySelectorAll('.project').forEach(function (project) {
 			let slideIndex = 0;
-			let slides = project.querySelectorAll('.carousel-images img');
+			let slides = project.querySelectorAll('.carousel-images img, .carousel-images video');
 			showSlides(slideIndex, slides);
 
 			project.querySelector('.prev').addEventListener('click', function () {
@@ -387,10 +585,18 @@
 			function showSlides(n, slides) {
 				if (n >= slides.length) { slideIndex = 0; }
 				if (n < 0) { slideIndex = slides.length - 1; }
-				for (let slide of slides) {
-					slide.style.display = "none";
+				for (let i = 0; i < slides.length; i++) {
+					slides[i].style.display = "none";
+					// Pause videos that are not in the current slide
+					if (slides[i].tagName === 'VIDEO') {
+						slides[i].pause();
+					}
 				}
 				slides[slideIndex].style.display = "block";
+				// Play video if the current slide is a video
+				if (slides[slideIndex].tagName === 'VIDEO') {
+					slides[slideIndex].play();
+				}
 			}
 		});
 
